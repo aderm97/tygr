@@ -66,8 +66,8 @@ Prerequisites:
 # Install
 pipx install tygr-agent
 
-# Configure AI provider
-export TYGR_LLM="openai/gpt-5"
+# Configure AI provider (OpenAI or Anthropic/Claude)
+export TYGR_LLM="openai/gpt-5"  # or "anthropic/claude-sonnet-4-5"
 export LLM_API_KEY="your-api-key"
 
 # Run security assessment
@@ -136,16 +136,42 @@ tygr --target https://your-app.com --instruction "Test with credentials: testuse
 
 ### ⚙️ Configuration
 
+#### OpenAI (Default)
 ```bash
 export TYGR_LLM="openai/gpt-5"
-export LLM_API_KEY="your-api-key"
-
-# Optional
-export LLM_API_BASE="your-api-base-url"  # if using a local model, e.g. Ollama, LMStudio
-export PERPLEXITY_API_KEY="your-api-key"  # for search capabilities
+export LLM_API_KEY="your-openai-api-key"
 ```
 
-[📚 View supported AI models](https://docs.litellm.ai/docs/providers)
+#### Anthropic Claude (Recommended)
+```bash
+export TYGR_LLM="anthropic/claude-sonnet-4-5"
+export LLM_API_KEY="your-anthropic-api-key"
+```
+
+**Supported Claude models:**
+- `anthropic/claude-sonnet-4-5` - Latest Sonnet 4.5 (best performance)
+- `anthropic/claude-3-5-sonnet-20241022` - Specific version
+- `anthropic/claude-3-opus-20240229` - Most capable model
+- `anthropic/claude-3-haiku-20240307` - Fastest & most cost-effective
+
+**Claude Features:**
+- ✅ Automatic prompt caching for reduced costs
+- ✅ Optimized for security testing workloads
+- ✅ Get your API key: [console.anthropic.com](https://console.anthropic.com/)
+
+#### Local Models (Ollama, LMStudio)
+```bash
+export TYGR_LLM="openai/gpt-5"  # or any model identifier
+export LLM_API_KEY="dummy-key"  # required but not used
+export LLM_API_BASE="http://localhost:11434"  # Ollama default
+```
+
+#### Optional Settings
+```bash
+export PERPLEXITY_API_KEY="your-api-key"  # for enhanced search capabilities
+```
+
+[📚 View all supported AI models](https://docs.litellm.ai/docs/providers)
 
 ### 🤖 Headless Mode
 
