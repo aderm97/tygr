@@ -96,3 +96,10 @@ Thumbs.db
 schema.graphql
 
 .opencode/
+
+# Claude Code configuration
+.claude/
+
+# BMad framework
+bmad/
+bmad-output/

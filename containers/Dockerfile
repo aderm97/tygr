@@ -148,7 +148,7 @@ RUN ARCH=$(uname -m) && \
     rm caido-cli.tar.gz && \
     mv caido-cli /usr/local/bin/
 
-ENV STRIX_SANDBOX_MODE=true
+ENV TYGR_SANDBOX_MODE=true
 ENV PYTHONPATH=/app
 ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -166,17 +166,17 @@ RUN /app/venv/bin/pip install -r /home/pentester/tools/jwt_tool/requirements.txt
 
 RUN echo "# Sandbox Environment" > README.md
 
-COPY strix/__init__.py strix/
-COPY strix/runtime/tool_server.py strix/runtime/__init__.py strix/runtime/runtime.py /app/strix/runtime/
+COPY tygr/__init__.py tygr/
+COPY tygr/runtime/tool_server.py tygr/runtime/__init__.py tygr/runtime/runtime.py /app/tygr/runtime/
 
-COPY strix/tools/__init__.py strix/tools/registry.py strix/tools/executor.py strix/tools/argument_parser.py /app/strix/tools/
+COPY tygr/tools/__init__.py tygr/tools/registry.py tygr/tools/executor.py tygr/tools/argument_parser.py /app/tygr/tools/
 
-COPY strix/tools/browser/ /app/strix/tools/browser/
-COPY strix/tools/file_edit/ /app/strix/tools/file_edit/
-COPY strix/tools/notes/ /app/strix/tools/notes/
-COPY strix/tools/python/ /app/strix/tools/python/
-COPY strix/tools/terminal/ /app/strix/tools/terminal/
-COPY strix/tools/proxy/ /app/strix/tools/proxy/
+COPY tygr/tools/browser/ /app/tygr/tools/browser/
+COPY tygr/tools/file_edit/ /app/tygr/tools/file_edit/
+COPY tygr/tools/notes/ /app/tygr/tools/notes/
+COPY tygr/tools/python/ /app/tygr/tools/python/
+COPY tygr/tools/terminal/ /app/tygr/tools/terminal/
+COPY tygr/tools/proxy/ /app/tygr/tools/proxy/
 
 RUN echo 'export PATH="/home/pentester/go/bin:/home/pentester/.local/bin:/home/pentester/.npm-global/bin:$PATH"' >> /home/pentester/.bashrc && \
     echo 'export PATH="/home/pentester/go/bin:/home/pentester/.local/bin:/home/pentester/.npm-global/bin:$PATH"' >> /home/pentester/.profile
